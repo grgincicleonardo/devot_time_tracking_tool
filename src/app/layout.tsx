@@ -1,6 +1,7 @@
 import "./globals.css";
 import Header from "../../components/Header";
 import { Nunito_Sans } from "next/font/google";
+import "primeicons/primeicons.css";
 
 const nunito = Nunito_Sans({
   variable: "--font-inter",

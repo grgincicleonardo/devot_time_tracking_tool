@@ -9,7 +9,7 @@ import { Button } from "primereact/button";
 export default function Home() {
   return (
     <main className="">
-      <div className="">home text</div>
+      <div className="container mx-auto">home text</div>
     </main>
   );
 }
