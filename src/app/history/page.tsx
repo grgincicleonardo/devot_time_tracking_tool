@@ -7,111 +7,150 @@ import React, { useState, useEffect } from "react";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import { Button } from "primereact/button";
-import { useRouter } from "next/navigation";
-import { auth } from "../../firebase/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { InputText } from "primereact/inputtext";
+import { Calendar, CalendarChangeEvent } from "primereact/calendar";
+import { FilterMatchMode } from "primereact/api";
 
 const data = [
-  {
-    id: 0,
-    time: "1:33:24",
-    description: "This is the oldest task ",
-  },
-  {
-    id: 999,
-    time: "1:33:24",
-    description: "This is the newest task ",
-  },
   {
     id: 1,
     time: "1:33:24",
     description: "Task 123 Jira lorem ipsum dolor sit amet ",
+    date: "13.12.2023",
   },
   {
     id: 2,
     time: "1:33:24",
     description: "Task 123 Jira lorem ipsum dolor sit amet ",
+    date: "13.12.2023",
   },
   {
     id: 3,
     time: "1:33:24",
     description: "Task 123 Jira lorem ipsum dolor sit amet ",
+    date: "13.12.2023",
   },
   {
     id: 3,
     time: "1:33:24",
     description: "Task 123 Jira lorem ipsum dolor sit amet ",
+    date: "13.12.2023",
   },
   {
     id: 3,
     time: "1:33:24",
     description: "Task 123 Jira lorem ipsum dolor sit amet ",
+    date: "13.12.2023",
   },
   {
     id: 3,
     time: "1:33:24",
     description: "Task 123 Jira lorem ipsum dolor sit amet ",
+    date: "13.12.2023",
   },
   {
     id: 3,
     time: "1:33:24",
     description: "Task 123 Jira lorem ipsum dolor sit amet ",
+    date: "13.12.2023",
   },
   {
     id: 3,
     time: "1:33:24",
     description: "Task 123 Jira lorem ipsum dolor sit amet ",
+    date: "13.12.2023",
   },
   {
     id: 3,
     time: "1:33:24",
     description: "Task 123 Jira lorem ipsum dolor sit amet ",
+    date: "13.12.2023",
   },
   {
     id: 3,
     time: "1:33:24",
     description: "Task 123 Jira lorem ipsum dolor sit amet ",
+    date: "13.12.2023",
   },
   {
     id: 3,
     time: "1:33:24",
     description: "Task 123 Jira lorem ipsum dolor sit amet ",
+    date: "13.12.2023",
   },
   {
     id: 3,
     time: "1:33:24",
     description: "Task 123 Jira lorem ipsum dolor sit amet ",
+    date: "13.12.2023",
   },
   {
     id: 3,
     time: "1:33:24",
     description: "dsadasdda 123 Jira lorem ipsum dolor sit amet ",
+    date: "13.12.2023",
   },
 ];
 
 export default function Home() {
+  const [startingDate, setStartingDate] = useState<
+    string | Date | Date[] | null
+  >(null);
+
+  const [endingDate, setEndingDate] = useState<string | Date | Date[] | null>(
+    null
+  );
+
+  const [filters, setFilters] = useState({
+    global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+  });
+
   return (
     <main className="">
-      <div className="container mx-auto mt-40">
-        <div className="w-full flex justify-end">
-          <div className="flex gap-4">
-            <Button label="Start new timer" icon="pi pi-clock" />
-            <Button label="Stop all" icon="pi pi-stop-circle" />
-          </div>
+      <div className="container mx-auto bg-lilac mt-40">
+        <div className="w-full flex justify-between gap-4 lg:gap-20">
+          <Calendar
+            value={startingDate}
+            onChange={(e: CalendarChangeEvent) => setStartingDate(e.value)}
+            showIcon
+            className="w-full"
+          />
+
+          <Calendar
+            value={endingDate}
+            onChange={(e: CalendarChangeEvent) => setEndingDate(e.value)}
+            showIcon
+            className="w-full"
+          />
+          <span className="p-input-icon-right">
+            <i className="pi pi-spin pi-close" />
+            <InputText
+              className="w-full"
+              onInput={(e) =>
+                setFilters({
+                  global: {
+                    value: e.target.value,
+                    matchMode: FilterMatchMode.CONTAINS,
+                  },
+                })
+              }
+            />
+          </span>
         </div>
+
         <div className="mt-10">
           <DataTable
             showGridlines
             paginator
-            rows={10}
+            rows={5}
             value={data}
+            sortMode="multiple"
+            filters={filters}
             tableStyle={{ minWidth: "50rem" }}
-            sortField="id"
-            sortOrder={-1}
-            editMode="cell"
           >
-            <Column field="time" header="Code"></Column>
+            <Column field="date" header="Name"></Column>
             <Column field="description" header="Name"></Column>
+            <Column field="time" header="Code"></Column>
           </DataTable>
         </div>
       </div>

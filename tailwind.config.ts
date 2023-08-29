@@ -16,6 +16,7 @@ module.exports = {
       ebony: "#0C0D25",
       lynch: "#5F6B8A",
       white: "#fff",
+      lilac: "#F9F9FD",
     },
     container: {
       padding: "20px",
