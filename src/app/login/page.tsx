@@ -8,6 +8,7 @@ import { InputText } from "primereact/inputtext";
 import { useRouter } from "next/navigation";
 import { auth } from "../../../firebase/firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { Toast } from "primereact/toast";
 
 export default function Home() {
   const [inputs, setInputs] = useState({ email: "", password: "" });
@@ -55,6 +56,7 @@ export default function Home() {
               feedback={false}
               placeholder="Password"
               inputStyle={{ width: "100%" }}
+              className="w-full mb-3"
               toggleMask
               onChange={handleChangeInput}
             />
