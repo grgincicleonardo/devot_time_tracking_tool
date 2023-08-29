@@ -107,11 +107,11 @@ export default function Home() {
 
   return (
     <main className="">
-      <div className="container mx-auto bg-lilac mt-40">
-        <div className="w-full flex justify-between gap-4 lg:gap-20">
+      <div className="container mx-auto mt-40">
+        <div className="w-full flex justify-between gap-4 lg:gap-20 bg-lilac py-10 px-12">
           <Calendar
             value={startingDate}
-            onChange={(e: CalendarChangeEvent) => setStartingDate(e.value)}
+            onChange={(e) => setStartingDate(e.value)}
             showIcon
             className="w-full"
           />
